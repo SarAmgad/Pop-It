@@ -8,24 +8,32 @@ public class BubblesSpawn : MonoBehaviour
     public GameObject[] spheres;
     public GameObject offset;
 
-    public static float radius = 1; // By User
+    public static float radius; // By User
+    // public static float radiuss;
     private float yCenter;
     private float xCenter;
 
-    public static float time = 60;  // By User
+    public static float time;  // By User
 
     private float timer = 0;
     public static List<Vector3> usedPositions = new List<Vector3>();
 
     public static bool yDestroyed = false;
     public static bool rDestroyed = false;
+    // ShowKeyboard keyboard;
 
-    public static int badRatio = 2;  // By User
+    public static int badRatio;  // By User
 
     // Start is called before the first frame update
     void Start()
     {
         ShowKeyboard.LoadParameters();
+        Debug.Log("31 bad ratio: " + badRatio + ",  radius: "+ radius + ",  time: "+time);
+
+        // radius = ShowKeyboard.radius;
+        // time = ShowKeyboard.time;
+        // badRatio = ShowKeyboard.badRatio;
+
         yCenter = offset.transform.position.y;
         xCenter = offset.transform.position.x;
 
@@ -55,7 +63,7 @@ public class BubblesSpawn : MonoBehaviour
 
     void CreateBubble(int bubblesNum, int index){
         for(int i = 0; i < bubblesNum; i++){
-            Vector3 spawnPos = new Vector3(Random.Range(xCenter - radius, xCenter + radius), Random.Range(yCenter - radius, yCenter + radius), 2);
+            Vector3 spawnPos = new Vector3(Random.Range(xCenter - radius, xCenter + radius), Random.Range(yCenter - radius, yCenter + radius), 1);
             if(usedPositions.Contains(spawnPos))
                 continue;
             Instantiate(spheres[index], spawnPos, spheres[index].transform.rotation);

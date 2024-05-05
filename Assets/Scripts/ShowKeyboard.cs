@@ -8,14 +8,19 @@ using System.IO;
 
 public class ShowKeyboard : MonoBehaviour
 {
-    private TMP_InputField inputField;
+    public TMP_InputField radiusField;
+    public TMP_InputField timeField;
+    public TMP_InputField ratioField;
 
     public int field;
+
+    public static float radius, time;
+    public static int badRatio;
     // Start is called before the first frame update
     void Start()
     {
-        inputField = GetComponent<TMP_InputField>();
-        inputField.onSelect.AddListener(x => OpenKeyboard());
+        radiusField = GetComponent<TMP_InputField>();
+        radiusField.onSelect.AddListener(x => OpenKeyboard());
     }
 
     // Update is called once per frame
@@ -25,8 +30,8 @@ public class ShowKeyboard : MonoBehaviour
     }
 
     public void OpenKeyboard(){
-        NonNativeKeyboard.Instance.InputField = inputField;
-        NonNativeKeyboard.Instance.PresentKeyboard(inputField.text);
+        NonNativeKeyboard.Instance.InputField = radiusField;
+        NonNativeKeyboard.Instance.PresentKeyboard(radiusField.text);
     }
 
     [Serializable]
@@ -37,18 +42,27 @@ public class ShowKeyboard : MonoBehaviour
         public int BadRatio;
     }
 
-    public void SaveParameters(){
-        SaveData data = new SaveData();
-        if(field == 0)
-            data.Radius = float.Parse(inputField.text);
-        else if(field == 1)
-            data.Time = float.Parse(inputField.text);
-        else if(field == 2)
-            data.BadRatio = int.Parse(inputField.text);
+    // public void SaveData2(){
+    //     radius = float.Parse(radiusField.text);
+    //     time = float.Parse(timeField.text);
+    //     badRatio = int.Parse(ratioField.text);
+    //     Debug.Log("line 55data: " +radius+"  "+time+"  "+badRatio);  
+    // }
 
-    string json = JsonUtility.ToJson(data);
+    public void SaveParameters(){
+        SaveData data = new SaveData
+        {
+            Radius = float.Parse(radiusField.text),
+            Time = float.Parse(timeField.text),
+            BadRatio = int.Parse(ratioField.text)
+        };
+
+        string json = JsonUtility.ToJson(data);
+        Debug.Log("line 72 "); 
+        Debug.Log("data: " +data.Radius+"  "+data.Time+"  "+data.BadRatio); 
         
-    File.WriteAllText(Application.persistentDataPath + "/saveFile.json", json);
+        File.WriteAllText(Application.persistentDataPath + "/saveFile.json", json);
+
     }
 
     public static void LoadParameters()
@@ -56,8 +70,10 @@ public class ShowKeyboard : MonoBehaviour
         string path = Application.persistentDataPath + "/saveFile.json";
         if (File.Exists(path))
         {
+            Debug.Log("file exist" + path );
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
+            Debug.Log("line 74 data: " +data.Radius+"  "+data.Time+"  "+data.BadRatio);
             BubblesSpawn.radius = data.Radius;
             BubblesSpawn.time = data.Time;
             BubblesSpawn.badRatio = data.BadRatio;
