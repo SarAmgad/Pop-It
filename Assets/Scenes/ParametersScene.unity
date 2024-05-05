@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter radius...
+  m_text: Enter time...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1516,11 +1516,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaae81b62e6ebd040ba701127c507c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 0}
   radiusField: {fileID: 919254503}
   timeField: {fileID: 1561673917}
   ratioField: {fileID: 2024436545}
-  field: 0
 --- !u!1 &959610813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2502,7 +2500,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter radius...
+  m_text: Enter number of red bubbles...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2866,11 +2864,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaae81b62e6ebd040ba701127c507c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 0}
-  radiusField: {fileID: 0}
-  timeField: {fileID: 0}
-  ratioField: {fileID: 0}
-  field: 1
+  radiusField: {fileID: 919254503}
+  timeField: {fileID: 1561673917}
+  ratioField: {fileID: 2024436545}
 --- !u!1 &1583733788
 GameObject:
   m_ObjectHideFlags: 0
@@ -4797,11 +4793,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaae81b62e6ebd040ba701127c507c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 0}
-  radiusField: {fileID: 0}
-  timeField: {fileID: 0}
-  ratioField: {fileID: 0}
-  field: 2
+  radiusField: {fileID: 919254503}
+  timeField: {fileID: 1561673917}
+  ratioField: {fileID: 2024436545}
 --- !u!1 &2142591178
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,12 +9,11 @@ using System.IO;
 public class ShowKeyboard : MonoBehaviour
 {
 
-    public TMP_InputField inputField;
+    private TMP_InputField inputField;
     public TMP_InputField radiusField;
     public TMP_InputField timeField;
     public TMP_InputField ratioField;
 
-    public int field;
 
     public static float radius, time;
     public static int badRatio;

@@ -10,12 +10,11 @@ public class BubblesSpawn : MonoBehaviour
 
     public GameObject resultsMenu;
 
-    public static float radius; // By User
-    // public static float radiuss;
+    public static float radius; 
     private float yCenter;
     private float xCenter;
 
-    public static float time;  // By User
+    public static float time;  
 
     private float timer = 0;
     public static List<Vector3> usedPositions = new List<Vector3>();
@@ -25,7 +24,7 @@ public class BubblesSpawn : MonoBehaviour
 
     public static bool gameEnd = false;
 
-    public static int badRatio;  // By User
+    public static int badRatio;  
 
     // Start is called before the first frame update
     void Start()
