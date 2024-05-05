@@ -6,6 +6,8 @@ using UnityEngine;
 public class BubblesPop : MonoBehaviour
 {
     public int colour; // 0 for y, 1 for r
+    public static int score;
+    public static int mistake;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,20 +21,18 @@ public class BubblesPop : MonoBehaviour
     }
 
     public void OnCollisionEnter(){
-        BubblesSpawn.usedPositions.Remove(gameObject.transform.position);
-        Destroy(gameObject);
-        if(colour == 0){
-            BubblesSpawn.yDestroyed = true;
-        }
-        else if(colour == 1){
-            BubblesSpawn.rDestroyed = true;
+        if(!BubblesSpawn.gameEnd){
+            BubblesSpawn.usedPositions.Remove(gameObject.transform.position);
+            Destroy(gameObject);
+            if(colour == 0){
+                BubblesSpawn.yDestroyed = true;
+                score++;
+            }
+            else if(colour == 1){
+                BubblesSpawn.rDestroyed = true;
+                mistake++;
+            }
         }
     }
 
-    // void OnTriggerEnter(){
-    //     BubblesSpawn.usedPositions.Remove(gameObject.transform.position);
-    //     Destroy(gameObject);
-    //     BubblesSpawn.destroyed = true;
-    //     Debug.Log("Trigger");
-    // }
 }

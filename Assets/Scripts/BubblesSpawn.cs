@@ -8,6 +8,8 @@ public class BubblesSpawn : MonoBehaviour
     public GameObject[] spheres;
     public GameObject offset;
 
+    public GameObject resultsMenu;
+
     public static float radius; // By User
     // public static float radiuss;
     private float yCenter;
@@ -20,13 +22,15 @@ public class BubblesSpawn : MonoBehaviour
 
     public static bool yDestroyed = false;
     public static bool rDestroyed = false;
-    // ShowKeyboard keyboard;
+
+    public static bool gameEnd = false;
 
     public static int badRatio;  // By User
 
     // Start is called before the first frame update
     void Start()
     {
+        gameEnd = false;
         ShowKeyboard.LoadParameters();
 
         yCenter = offset.transform.position.y;
@@ -46,6 +50,11 @@ public class BubblesSpawn : MonoBehaviour
             SpawnRandomBubbles(0, 1);
             rDestroyed = false;
         }
+        else if(timer > time){
+            gameEnd = true;
+            resultsMenu.SetActive(true);
+            DestroyAllBubbles();
+        }
         timer += Time.deltaTime;
     }
 
@@ -58,11 +67,18 @@ public class BubblesSpawn : MonoBehaviour
 
     void CreateBubble(int bubblesNum, int index){
         for(int i = 0; i < bubblesNum; i++){
-            Vector3 spawnPos = new Vector3(Random.Range(xCenter - radius, xCenter + radius), Random.Range(0, yCenter + radius), 1);
+            Vector3 spawnPos = new Vector3(Random.Range(xCenter - radius, xCenter + radius), 
+                                            Random.Range(yCenter - radius < 0 ? 0 : yCenter - radius, yCenter + radius), 1);
             if(usedPositions.Contains(spawnPos))
                 continue;
             Instantiate(spheres[index], spawnPos, spheres[index].transform.rotation);
             usedPositions.Add(spawnPos);
         }
+    }
+
+    void DestroyAllBubbles(){
+        GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
+        foreach(GameObject bubble in bubbles)
+            Destroy(bubble);
     }
 }
