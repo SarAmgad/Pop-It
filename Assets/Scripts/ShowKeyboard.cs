@@ -8,6 +8,8 @@ using System.IO;
 
 public class ShowKeyboard : MonoBehaviour
 {
+
+    public TMP_InputField inputField;
     public TMP_InputField radiusField;
     public TMP_InputField timeField;
     public TMP_InputField ratioField;
@@ -19,19 +21,13 @@ public class ShowKeyboard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        radiusField = GetComponent<TMP_InputField>();
-        radiusField.onSelect.AddListener(x => OpenKeyboard());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        inputField = GetComponent<TMP_InputField>();
+        inputField.onSelect.AddListener(x => OpenKeyboard());
     }
 
     public void OpenKeyboard(){
-        NonNativeKeyboard.Instance.InputField = radiusField;
-        NonNativeKeyboard.Instance.PresentKeyboard(radiusField.text);
+        NonNativeKeyboard.Instance.InputField = inputField;
+        NonNativeKeyboard.Instance.PresentKeyboard(inputField.text);
     }
 
     [Serializable]
@@ -58,8 +54,6 @@ public class ShowKeyboard : MonoBehaviour
         };
 
         string json = JsonUtility.ToJson(data);
-        Debug.Log("line 72 "); 
-        Debug.Log("data: " +data.Radius+"  "+data.Time+"  "+data.BadRatio); 
         
         File.WriteAllText(Application.persistentDataPath + "/saveFile.json", json);
 
@@ -73,7 +67,6 @@ public class ShowKeyboard : MonoBehaviour
             Debug.Log("file exist" + path );
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
-            Debug.Log("line 74 data: " +data.Radius+"  "+data.Time+"  "+data.BadRatio);
             BubblesSpawn.radius = data.Radius;
             BubblesSpawn.time = data.Time;
             BubblesSpawn.badRatio = data.BadRatio;

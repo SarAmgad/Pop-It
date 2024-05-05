@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1516,6 +1516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaae81b62e6ebd040ba701127c507c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputField: {fileID: 0}
   radiusField: {fileID: 919254503}
   timeField: {fileID: 1561673917}
   ratioField: {fileID: 2024436545}
@@ -2865,6 +2866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaae81b62e6ebd040ba701127c507c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputField: {fileID: 0}
   radiusField: {fileID: 0}
   timeField: {fileID: 0}
   ratioField: {fileID: 0}
@@ -4795,6 +4797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaae81b62e6ebd040ba701127c507c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputField: {fileID: 0}
   radiusField: {fileID: 0}
   timeField: {fileID: 0}
   ratioField: {fileID: 0}

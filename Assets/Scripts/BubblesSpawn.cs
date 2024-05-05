@@ -28,11 +28,6 @@ public class BubblesSpawn : MonoBehaviour
     void Start()
     {
         ShowKeyboard.LoadParameters();
-        Debug.Log("31 bad ratio: " + badRatio + ",  radius: "+ radius + ",  time: "+time);
-
-        // radius = ShowKeyboard.radius;
-        // time = ShowKeyboard.time;
-        // badRatio = ShowKeyboard.badRatio;
 
         yCenter = offset.transform.position.y;
         xCenter = offset.transform.position.x;
@@ -47,7 +42,7 @@ public class BubblesSpawn : MonoBehaviour
             SpawnRandomBubbles(1, 0);
             yDestroyed = false;
         }
-        else if(timer <= 60 && rDestroyed){
+        else if(timer <= time && rDestroyed){
             SpawnRandomBubbles(0, 1);
             rDestroyed = false;
         }
@@ -63,7 +58,7 @@ public class BubblesSpawn : MonoBehaviour
 
     void CreateBubble(int bubblesNum, int index){
         for(int i = 0; i < bubblesNum; i++){
-            Vector3 spawnPos = new Vector3(Random.Range(xCenter - radius, xCenter + radius), Random.Range(yCenter - radius, yCenter + radius), 1);
+            Vector3 spawnPos = new Vector3(Random.Range(xCenter - radius, xCenter + radius), Random.Range(0, yCenter + radius), 1);
             if(usedPositions.Contains(spawnPos))
                 continue;
             Instantiate(spheres[index], spawnPos, spheres[index].transform.rotation);
