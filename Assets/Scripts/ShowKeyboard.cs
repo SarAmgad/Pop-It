@@ -14,6 +14,9 @@ public class ShowKeyboard : MonoBehaviour
     public TMP_InputField timeField;
     public TMP_InputField ratioField;
 
+    public static string radiusText;
+    public static string timeText;
+    public static string ratioText;
 
     public static float radius, time;
     public static int badRatio;
@@ -21,6 +24,14 @@ public class ShowKeyboard : MonoBehaviour
     void Start()
     {
         inputField = GetComponent<TMP_InputField>();
+        Debug.Log(SuperBubbles.therapistScene);
+        if(SuperBubbles.therapistScene){
+            SuperBubbles.therapistScene = false;
+            LoadParameters(1);
+            radiusField.text = radiusText;
+            timeField.text = timeText;
+            ratioField.text = ratioText;
+        }
         inputField.onSelect.AddListener(x => OpenKeyboard());
     }
 
@@ -37,13 +48,6 @@ public class ShowKeyboard : MonoBehaviour
         public int BadRatio;
     }
 
-    // public void SaveData2(){
-    //     radius = float.Parse(radiusField.text);
-    //     time = float.Parse(timeField.text);
-    //     badRatio = int.Parse(ratioField.text);
-    //     Debug.Log("line 55data: " +radius+"  "+time+"  "+badRatio);  
-    // }
-
     public void SaveParameters(){
         SaveData data = new SaveData
         {
@@ -58,7 +62,7 @@ public class ShowKeyboard : MonoBehaviour
 
     }
 
-    public static void LoadParameters()
+    public static void LoadParameters(int scene)
     {
         string path = Application.persistentDataPath + "/saveFile.json";
         if (File.Exists(path))
@@ -66,9 +70,16 @@ public class ShowKeyboard : MonoBehaviour
             Debug.Log("file exist" + path );
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
-            BubblesSpawn.radius = data.Radius;
-            BubblesSpawn.time = data.Time;
-            BubblesSpawn.badRatio = data.BadRatio;
+            if(scene == 1){
+                radiusText = $"{data.Radius}";
+                timeText = $"{data.Time}";
+                ratioText = $"{data.BadRatio}";
+            }
+            else if(scene == 2){
+                BubblesSpawn.radius = data.Radius;
+                BubblesSpawn.time = data.Time;
+                BubblesSpawn.badRatio = data.BadRatio;
+            }
         }
     }
 }

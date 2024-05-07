@@ -13,8 +13,4 @@ public class Results : MonoBehaviour
         mistakes.text = $"Mistakes: {BubblesPop.mistake} red bubble";
     }
 
-    // public void GetResults(){
-    //     score.text = $"Score: {BubblesPop.score} bubble in {BubblesSpawn.time}"; // Yellow only
-    //     mistakes.text = $"Mistakes: {BubblesPop.mistake} red bubbles";
-    // }
 }

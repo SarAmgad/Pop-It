@@ -6,6 +6,8 @@ public class BubblesSpawn : MonoBehaviour
 {
 
     public GameObject[] spheres;
+
+    public GameObject superBubble;
     public GameObject offset;
 
     public GameObject resultsMenu;
@@ -19,18 +21,22 @@ public class BubblesSpawn : MonoBehaviour
     private float timer = 0;
     public static List<Vector3> usedPositions = new List<Vector3>();
 
+    private List<Vector3> superBubblesPositions = new List<Vector3>();
+
     public static bool yDestroyed = false;
     public static bool rDestroyed = false;
 
-    public static bool gameEnd = false;
-
     public static int badRatio;  
+
+    public static int superBubblesCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameEnd = false;
-        ShowKeyboard.LoadParameters();
+        ShowKeyboard.LoadParameters(2);
+        SuperBubbles.LoadParameters(superBubblesPositions);
+        EditPositions(superBubblesPositions);
+        superBubblesCount = superBubblesPositions.Count;
 
         yCenter = offset.transform.position.y;
         xCenter = offset.transform.position.x;
@@ -50,10 +56,14 @@ public class BubblesSpawn : MonoBehaviour
             rDestroyed = false;
         }
         else if(timer > time){
-            gameEnd = true;
-            resultsMenu.SetActive(true);
             DestroyAllBubbles();
+            CreateSuperBubbles();
         }
+
+        if(superBubblesCount == 0){
+            resultsMenu.SetActive(true);
+        }
+
         timer += Time.deltaTime;
     }
 
@@ -72,6 +82,18 @@ public class BubblesSpawn : MonoBehaviour
                 continue;
             Instantiate(spheres[index], spawnPos, spheres[index].transform.rotation);
             usedPositions.Add(spawnPos);
+        }
+    }
+
+    void CreateSuperBubbles(){
+        for(int i = 0; i < superBubblesPositions.Count; i++){
+            Instantiate(superBubble, superBubblesPositions[i], superBubble.transform.rotation);
+        }
+    }
+
+    void EditPositions(List<Vector3> positions){
+        for(int i = 0; i < positions.Count; i++){
+            positions[i] = new Vector3(positions[i].x, positions[i].y, 1);
         }
     }
 

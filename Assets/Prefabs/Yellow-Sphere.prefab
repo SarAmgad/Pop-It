@@ -189,7 +189,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4578865553366329176}
         m_TargetAssemblyTypeName: BubblesPop, Assembly-CSharp
-        m_MethodName: OnCollisionEnter
+        m_MethodName: PopBubble
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
