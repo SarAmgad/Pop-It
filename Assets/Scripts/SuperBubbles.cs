@@ -31,20 +31,27 @@ public class SuperBubbles : MonoBehaviour
         if(!isMenuOpen){
             if (TriggerInputDetector.rTriggerClicked)
             {
-                positions.Add(TriggerInputDetector.rControllerPos);
-                Instantiate(superBubble, TriggerInputDetector.rControllerPos, superBubble.transform.rotation);
+                // Debug.Log(TriggerInputDetector.rControllerPos);
+                // positions.Add(TriggerInputDetector.rControllerPos);
+                // Instantiate(superBubble, TriggerInputDetector.rControllerPos, superBubble.transform.rotation);
             }
             else if (TriggerInputDetector.lTriggerClicked)
             {
-                positions.Add(TriggerInputDetector.lControllerPos);
-                Instantiate(superBubble, TriggerInputDetector.lControllerPos, superBubble.transform.rotation);
+                // positions.Add(TriggerInputDetector.lControllerPos);
+                // Instantiate(superBubble, TriggerInputDetector.lControllerPos, superBubble.transform.rotation);
             }
         }
 
         if(TriggerInputDetector.rGripClicked || TriggerInputDetector.lGripClicked){
+            Debug.Log("2nd condition");
             menu.SetActive(true);
             isMenuOpen = true;
         }
+    }
+
+    public void SuperBubbleInstaniate(Vector3 pos){
+        positions.Add(pos);
+        Instantiate(superBubble, pos, superBubble.transform.rotation);
     }
 
     [Serializable]

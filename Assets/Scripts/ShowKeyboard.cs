@@ -24,7 +24,7 @@ public class ShowKeyboard : MonoBehaviour
     void Start()
     {
         inputField = GetComponent<TMP_InputField>();
-        Debug.Log(SuperBubbles.therapistScene);
+        // Debug.Log(SuperBubbles.therapistScene);
         if(SuperBubbles.therapistScene){
             SuperBubbles.therapistScene = false;
             LoadParameters(1);

@@ -1240,7 +1240,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471141767}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 1830689383}
@@ -1286,7 +1286,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471141767}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af71c5b8f6d458c4fb5c60f3498ca3a1, type: 3}
   m_Name: 
@@ -1347,7 +1347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2354,6 +2354,7 @@ GameObject:
   - component: {fileID: 839620719}
   - component: {fileID: 839620718}
   - component: {fileID: 839620720}
+  - component: {fileID: 839620721}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -2400,6 +2401,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48897519518c681449febcac871a14d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rController: {fileID: 586003216}
+  lController: {fileID: 153720261}
+  superBubble: {fileID: 3807601600464494313, guid: 9d90b8f9e143faa409017e610225d5ec, type: 3}
+--- !u!114 &839620721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839620717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af71c5b8f6d458c4fb5c60f3498ca3a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 471141767}
+  superBubble: {fileID: 3807601600464494313, guid: 9d90b8f9e143faa409017e610225d5ec, type: 3}
 --- !u!1 &1076777211
 GameObject:
   m_ObjectHideFlags: 0

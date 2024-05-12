@@ -18,28 +18,42 @@ public class TriggerInputDetector : MonoBehaviour
 
     public static Vector3 rControllerPos;
     public static Vector3 lControllerPos;
+    public GameObject rController, lController;
+
+    // SuperBubbles super;
+    SuperBubbles super;
+
+
+    public GameObject superBubble;
+    // private InputData _inputData;
+
+    public static List<Vector3> positions = new List<Vector3>();
 
 
     private void Start()
     {
         _inputData = GetComponent<InputData>();
+        super = gameObject.AddComponent<SuperBubbles>();
     }
     // Update is called once per frame
     void Update()
     {
-        if (_inputData._leftController.TryGetFeatureValue(CommonUsages.trigger, out float lTriggerValue) && lTriggerValue > 0.1f)
+        if (_inputData._leftController.TryGetFeatureValue(CommonUsages.trigger, out float lTriggerValue) && lTriggerValue > 0.1f && !lTriggerClicked)
         {
-            lTriggerClicked = true;
-            Debug.Log("Trigger");
+            lTriggerClicked = true; 
+            SuperBubbleInstaniate(lController.transform.position);
         }
         else
         {
-            lTriggerClicked = false;
+            lTriggerClicked = false; 
         }
+
+
         
-        if (_inputData._rightController.TryGetFeatureValue(CommonUsages.trigger, out float rTriggerValue) && rTriggerValue > 0.1f)
+        if (_inputData._rightController.TryGetFeatureValue(CommonUsages.trigger, out float rTriggerValue) && rTriggerValue > 0.1f && !rTriggerClicked)
         {
             rTriggerClicked = true;
+            SuperBubbleInstaniate(rController.transform.position);
         }
         else
         {
@@ -61,15 +75,17 @@ public class TriggerInputDetector : MonoBehaviour
             rGripClicked = false;
         }
 
+        // if (_inputData._leftController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 lControllerPosition)){
+        //     lControllerPos = lControllerPosition;
+        // }
 
+        // if (_inputData._rightController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 rControllerPosition)){
+        //     rControllerPos = rControllerPosition;
+        // }
+    }
 
-        if (_inputData._leftController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 lControllerPosition)){
-            lControllerPos = lControllerPosition;
-        }
-
-        if (_inputData._rightController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 rControllerPosition)){
-            rControllerPos = rControllerPosition;
-        }
-
+    public void SuperBubbleInstaniate(Vector3 pos){
+        positions.Add(pos);
+        Instantiate(superBubble, pos, superBubble.transform.rotation);
     }
 }
