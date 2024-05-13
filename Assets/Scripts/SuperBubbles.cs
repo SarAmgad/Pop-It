@@ -9,12 +9,12 @@ using UnityEngine.UIElements;
 public class SuperBubbles : MonoBehaviour
 {
     public GameObject menu;
-    public GameObject superBubble;
+    public static GameObject superBubble;
     private InputData _inputData;
 
     public static List<Vector3> positions = new List<Vector3>();
 
-    private bool isMenuOpen = false;
+    public static bool isMenuOpen = false;
 
     public static bool therapistScene = false;
 
@@ -43,13 +43,13 @@ public class SuperBubbles : MonoBehaviour
         }
 
         if(TriggerInputDetector.rGripClicked || TriggerInputDetector.lGripClicked){
-            Debug.Log("2nd condition");
+            // Debug.Log("2nd condition");
             menu.SetActive(true);
             isMenuOpen = true;
         }
     }
 
-    public void SuperBubbleInstaniate(Vector3 pos){
+    public static void SuperBubbleInstaniate(Vector3 pos){
         positions.Add(pos);
         Instantiate(superBubble, pos, superBubble.transform.rotation);
     }
@@ -61,6 +61,7 @@ public class SuperBubbles : MonoBehaviour
     }
 
     public void SaveParameters(){
+        Debug.Log("Save Parameters Superrrr");
         SaveData data = new SaveData
         {
             Positions = positions
@@ -73,6 +74,7 @@ public class SuperBubbles : MonoBehaviour
 
     public static void LoadParameters(List<Vector3> positions)
     {
+        Debug.Log("Load Parameters Superrrr");
         string path = Application.persistentDataPath + "/positions.json";
         if (File.Exists(path))
         {

@@ -21,8 +21,6 @@ public class TriggerInputDetector : MonoBehaviour
     public GameObject rController, lController;
 
     // SuperBubbles super;
-    SuperBubbles super;
-
 
     public GameObject superBubble;
     // private InputData _inputData;
@@ -33,33 +31,44 @@ public class TriggerInputDetector : MonoBehaviour
     private void Start()
     {
         _inputData = GetComponent<InputData>();
-        super = gameObject.AddComponent<SuperBubbles>();
+        // super = gameObject.AddComponent<SuperBubbles>();
     }
     // Update is called once per frame
     void Update()
     {
-        if (_inputData._leftController.TryGetFeatureValue(CommonUsages.trigger, out float lTriggerValue) && lTriggerValue > 0.1f && !lTriggerClicked)
+        if (_inputData._leftController.TryGetFeatureValue(CommonUsages.trigger, out float lTriggerValue) && lTriggerValue > 0.1f)
         {
-            lTriggerClicked = true; 
-            SuperBubbleInstaniate(lController.transform.position);
+            if (!lTriggerClicked && !SuperBubbles.isMenuOpen){
+                lTriggerClicked = true;
+                SuperBubbleInstaniate(lController.transform.position);
+            }
         }
         else
         {
-            lTriggerClicked = false; 
+            lTriggerClicked = false;
         }
 
 
         
-        if (_inputData._rightController.TryGetFeatureValue(CommonUsages.trigger, out float rTriggerValue) && rTriggerValue > 0.1f && !rTriggerClicked)
+        if (_inputData._rightController.TryGetFeatureValue(CommonUsages.trigger, out float rTriggerValue) && rTriggerValue > 0.1f)
         {
-            rTriggerClicked = true;
-            SuperBubbleInstaniate(rController.transform.position);
+            if (!rTriggerClicked && !SuperBubbles.isMenuOpen){
+                rTriggerClicked = true;
+                SuperBubbleInstaniate(rController.transform.position);
+            }
         }
         else
         {
             rTriggerClicked = false;
         }
 
+        // if (_inputData._leftController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 lControllerPosition)){
+        //     lControllerPos = lControllerPosition;
+        // }
+
+        // if (_inputData._rightController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 rControllerPosition)){
+        //     rControllerPos = rControllerPosition;
+        // }
 
         if (_inputData._leftController.TryGetFeatureValue(CommonUsages.grip, out float lGripValue) && lGripValue > 0.1f)
         {
@@ -74,18 +83,10 @@ public class TriggerInputDetector : MonoBehaviour
         }else{
             rGripClicked = false;
         }
-
-        // if (_inputData._leftController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 lControllerPosition)){
-        //     lControllerPos = lControllerPosition;
-        // }
-
-        // if (_inputData._rightController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 rControllerPosition)){
-        //     rControllerPos = rControllerPosition;
-        // }
     }
 
     public void SuperBubbleInstaniate(Vector3 pos){
-        positions.Add(pos);
+        SuperBubbles.positions.Add(pos);
         Instantiate(superBubble, pos, superBubble.transform.rotation);
     }
 }
