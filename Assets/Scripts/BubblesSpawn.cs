@@ -25,6 +25,7 @@ public class BubblesSpawn : MonoBehaviour
 
     public static bool yDestroyed = false;
     public static bool rDestroyed = false;
+    private bool isTimerEnd = false;
 
     public static int badRatio;  
 
@@ -34,7 +35,7 @@ public class BubblesSpawn : MonoBehaviour
     void Start()
     {
         ShowKeyboard.LoadParameters(2);
-        SuperBubbles.LoadParameters(superBubblesPositions);
+        superBubblesPositions = SuperBubbles.LoadParameters();
         EditPositions(superBubblesPositions);
         superBubblesCount = superBubblesPositions.Count;
 
@@ -55,12 +56,13 @@ public class BubblesSpawn : MonoBehaviour
             SpawnRandomBubbles(0, 1);
             rDestroyed = false;
         }
-        else if(timer > time){
+        else if(timer > time && !isTimerEnd){
             DestroyAllBubbles();
             CreateSuperBubbles();
+            isTimerEnd = true;
         }
 
-        if(superBubblesCount == 0){
+        if(superBubblesCount == 0 && isTimerEnd){
             resultsMenu.SetActive(true);
         }
 

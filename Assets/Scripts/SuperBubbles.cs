@@ -72,7 +72,7 @@ public class SuperBubbles : MonoBehaviour
         File.WriteAllText(Application.persistentDataPath + "/positions.json", json);
     }
 
-    public static void LoadParameters(List<Vector3> positions)
+    public static List<Vector3> LoadParameters()
     {
         Debug.Log("Load Parameters Superrrr");
         string path = Application.persistentDataPath + "/positions.json";
@@ -80,8 +80,9 @@ public class SuperBubbles : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
-            positions = data.Positions;
+            return data.Positions;
         }
+        return new List<Vector3>();
     }
 
     public void CloseMenu(){

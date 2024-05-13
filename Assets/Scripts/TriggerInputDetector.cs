@@ -20,10 +20,7 @@ public class TriggerInputDetector : MonoBehaviour
     public static Vector3 lControllerPos;
     public GameObject rController, lController;
 
-    // SuperBubbles super;
-
     public GameObject superBubble;
-    // private InputData _inputData;
 
     public static List<Vector3> positions = new List<Vector3>();
 
@@ -31,7 +28,6 @@ public class TriggerInputDetector : MonoBehaviour
     private void Start()
     {
         _inputData = GetComponent<InputData>();
-        // super = gameObject.AddComponent<SuperBubbles>();
     }
     // Update is called once per frame
     void Update()
