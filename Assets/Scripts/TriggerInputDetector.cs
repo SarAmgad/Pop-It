@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEngine;
@@ -18,7 +19,7 @@ public class TriggerInputDetector : MonoBehaviour
 
     public static Vector3 rControllerPos;
     public static Vector3 lControllerPos;
-    public GameObject rController, lController;
+    public GameObject rController, lController, head;
 
     public GameObject superBubble;
 
@@ -27,6 +28,7 @@ public class TriggerInputDetector : MonoBehaviour
 
     private void Start()
     {
+
         _inputData = GetComponent<InputData>();
     }
     // Update is called once per frame
@@ -36,7 +38,7 @@ public class TriggerInputDetector : MonoBehaviour
         {
             if (!lTriggerClicked && !SuperBubbles.isMenuOpen){
                 lTriggerClicked = true;
-                SuperBubbleInstaniate(lController.transform.position);
+                SuperBubbleInstaniate(lController.transform);
             }
         }
         else
@@ -50,7 +52,7 @@ public class TriggerInputDetector : MonoBehaviour
         {
             if (!rTriggerClicked && !SuperBubbles.isMenuOpen){
                 rTriggerClicked = true;
-                SuperBubbleInstaniate(rController.transform.position);
+                SuperBubbleInstaniate(rController.transform);
             }
         }
         else
@@ -81,8 +83,12 @@ public class TriggerInputDetector : MonoBehaviour
         }
     }
 
-    public void SuperBubbleInstaniate(Vector3 pos){
-        SuperBubbles.positions.Add(pos);
-        Instantiate(superBubble, pos, superBubble.transform.rotation);
+    public void SuperBubbleInstaniate(Transform pos){
+        // Transform obj1;
+        // Transform obj2;
+        pos.InverseTransformPoint(head.transform.position);
+
+        SuperBubbles.positions.Add(pos.position);
+        Instantiate(superBubble, pos.position, superBubble.transform.rotation);
     }
 }

@@ -5,6 +5,7 @@ using TMPro;
 using Microsoft.MixedReality.Toolkit.Experimental.UI;
 using System;
 using System.IO;
+using Unity.Mathematics;
 
 public class ShowKeyboard : MonoBehaviour
 {
@@ -17,12 +18,17 @@ public class ShowKeyboard : MonoBehaviour
     public static string radiusText;
     public static string timeText;
     public static string ratioText;
+    public GameObject head;
 
     public static float radius, time;
     public static int badRatio;
     // Start is called before the first frame update
     void Start()
     {
+
+        // head.transform.rotation = new Quaternion (0, 0, 0);
+        head.transform.rotation = Quaternion.identity;
+
         inputField = GetComponent<TMP_InputField>();
         // Debug.Log(SuperBubbles.therapistScene);
         if(SuperBubbles.therapistScene){

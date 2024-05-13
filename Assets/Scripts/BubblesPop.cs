@@ -9,16 +9,23 @@ public class BubblesPop : MonoBehaviour
     public static int score;
     public static int mistake;
 
-    public void PopBubble(){
-        BubblesSpawn.usedPositions.Remove(gameObject.transform.position);
+    public void OnCollisionEnter() {
+        
+        
         Destroy(gameObject);
         if(colour == 0){
+            BubblesSpawn.usedPositions.Remove(gameObject.transform.position);
             BubblesSpawn.yDestroyed = true;
             score++;
         }
         else if(colour == 1){
+            BubblesSpawn.usedPositions.Remove(gameObject.transform.position);
             BubblesSpawn.rDestroyed = true;
             mistake++;
+        }
+        else if(colour == 2){
+            // Destroy(gameObject);
+            BubblesSpawn.superBubblesCount--;
         }
     }
 

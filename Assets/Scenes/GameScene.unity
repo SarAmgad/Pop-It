@@ -936,7 +936,7 @@ MonoBehaviour:
   m_HandMeshMaterial: {fileID: 2100000, guid: f44c4d718c3dc2b478112973d1e53dde, type: 2}
   m_DrawMeshes: 1
   m_DebugDrawPrefab: {fileID: 6507399986997092475, guid: 254b742d65a15d14b9df756ae77de868, type: 3}
-  m_DebugDrawJoints: 1
+  m_DebugDrawJoints: 0
   m_VelocityPrefab: {fileID: 8538602047018081646, guid: 629fd7882ec6bfc499a5fcf20035282b, type: 3}
   m_VelocityType: 2
 --- !u!1 &204909740
@@ -1417,7 +1417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1685,7 +1685,7 @@ MonoBehaviour:
   - {fileID: 3807601600464494313, guid: 0f9a7a26b5b02ee479b6f7b4c3b473f8, type: 3}
   - {fileID: 3807601600464494313, guid: 1804b4d089d69a04182c71623f58c626, type: 3}
   superBubble: {fileID: 3807601600464494313, guid: 9d90b8f9e143faa409017e610225d5ec, type: 3}
-  offset: {fileID: 1698027338}
+  offset: {fileID: 1007148376}
   resultsMenu: {fileID: 233233404}
 --- !u!4 &841351281
 Transform:
@@ -2004,7 +2004,7 @@ MonoBehaviour:
   m_Camera: {fileID: 1007148380}
   m_OriginBaseGameObject: {fileID: 1120211771}
   m_CameraFloorOffsetObject: {fileID: 1698027338}
-  m_RequestedTrackingOriginMode: 0
+  m_RequestedTrackingOriginMode: 1
   m_CameraYOffset: 1.1176
 --- !u!4 &1120211774
 Transform:
@@ -2015,7 +2015,7 @@ Transform:
   m_GameObject: {fileID: 1120211771}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

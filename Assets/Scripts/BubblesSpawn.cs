@@ -13,7 +13,7 @@ public class BubblesSpawn : MonoBehaviour
     public GameObject resultsMenu;
 
     public static float radius; 
-    private float yCenter;
+    private float yCenter, zCenter;
     private float xCenter;
 
     public static float time;  
@@ -41,6 +41,7 @@ public class BubblesSpawn : MonoBehaviour
 
         yCenter = offset.transform.position.y;
         xCenter = offset.transform.position.x;
+        zCenter = offset.transform.position.z;
 
         SpawnRandomBubbles(5 - badRatio, badRatio);
     }
@@ -79,7 +80,7 @@ public class BubblesSpawn : MonoBehaviour
     void CreateBubble(int bubblesNum, int index){
         for(int i = 0; i < bubblesNum; i++){
             Vector3 spawnPos = new Vector3(Random.Range(xCenter - radius, xCenter + radius), 
-                                            Random.Range(yCenter - radius < 0 ? 0 : yCenter - radius, yCenter + radius), 1);
+                                            Random.Range(yCenter - radius < 0 ? 0 : yCenter - radius, yCenter + radius), zCenter + 1);
             if(usedPositions.Contains(spawnPos))
                 continue;
             Instantiate(spheres[index], spawnPos, spheres[index].transform.rotation);
@@ -95,7 +96,8 @@ public class BubblesSpawn : MonoBehaviour
 
     void EditPositions(List<Vector3> positions){
         for(int i = 0; i < positions.Count; i++){
-            positions[i] = new Vector3(positions[i].x, positions[i].y, 1);
+            positions[i] = new Vector3(positions[i].x + xCenter, positions[i].y + yCenter, zCenter + 1);
+            Debug.Log("======" + positions[i]);
         }
     }
 
