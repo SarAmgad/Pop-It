@@ -29,7 +29,6 @@ public class SuperBubbles : MonoBehaviour
     void Update()
     {
         if(TriggerInputDetector.rGripClicked || TriggerInputDetector.lGripClicked){
-            // Debug.Log("2nd condition");
             menu.SetActive(true);
             isMenuOpen = true;
         }

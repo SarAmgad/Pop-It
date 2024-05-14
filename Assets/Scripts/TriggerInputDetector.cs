@@ -31,7 +31,7 @@ public class TriggerInputDetector : MonoBehaviour
 
         _inputData = GetComponent<InputData>();
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (_inputData._leftController.TryGetFeatureValue(CommonUsages.trigger, out float lTriggerValue) && lTriggerValue > 0.1f)

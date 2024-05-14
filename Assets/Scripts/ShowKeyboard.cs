@@ -73,7 +73,6 @@ public class ShowKeyboard : MonoBehaviour
         string path = Application.persistentDataPath + "/saveFile.json";
         if (File.Exists(path))
         {
-            Debug.Log("file exist" + path );
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
             if(scene == 1){

@@ -6,70 +6,69 @@ public class BubblesSpawn : MonoBehaviour
 {
 
     public GameObject[] spheres;
-
-    public GameObject superBubble;
-    public GameObject offset;
-
-    public GameObject resultsMenu;
-
-    public static float radius; 
-    private float yCenter, zCenter;
-    private float xCenter;
-
-    public static float time;  
-
+    public GameObject superBubble, offset, resultsMenu, startingMenu, menu;
+    public static float radius, time; 
+    public static int badRatio;  
+    public static int superBubblesCount;
+    private float yCenter, zCenter, xCenter;
     private float timer = 0;
-    public static List<Vector3> usedPositions = new List<Vector3>();
-
-    private List<Vector3> superBubblesPositions = new List<Vector3>();
-
     public static bool yDestroyed = false;
     public static bool rDestroyed = false;
+    public static bool gameStart = false;
+    public static bool pauseGame = false;
     private bool isTimerEnd = false;
 
-    public static int badRatio;  
+    public static List<Vector3> usedPositions = new List<Vector3>();
+    private List<Vector3> superBubblesPositions = new List<Vector3>();
 
-    public static int superBubblesCount;
-
-    // Start is called before the first frame update
     void Start()
     {
         ShowKeyboard.LoadParameters(2);
         superBubblesPositions = SuperBubbles.LoadParameters();
-        EditPositions(superBubblesPositions);
-        superBubblesCount = superBubblesPositions.Count;
-
-        yCenter = offset.transform.position.y;
-        xCenter = offset.transform.position.x;
-        zCenter = offset.transform.position.z;
-        Debug.Log("Center" +xCenter + "," + yCenter + "," + zCenter);
-
-        SpawnRandomBubbles(5 - badRatio, badRatio);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(timer <= time && yDestroyed){
+        if(gameStart){
+            gameStart = false;
+            startingMenu.SetActive(false);
+
+            yCenter = offset.transform.position.y;
+            xCenter = offset.transform.position.x;
+            zCenter = offset.transform.position.z;
+
+            EditPositions(superBubblesPositions);
+            superBubblesCount = superBubblesPositions.Count;
+            Debug.Log("Center" +xCenter + "," + yCenter + "," + zCenter);
+
+            SpawnRandomBubbles(5 - badRatio, badRatio);
+        }
+        else if(TriggerInputDetector.rGripClicked || TriggerInputDetector.lGripClicked){
+            menu.SetActive(true);
+            pauseGame = true;
+        }
+        else{
+            if(timer <= time && yDestroyed){
             SpawnRandomBubbles(1, 0);
             yDestroyed = false;
-        }
-        else if(timer <= time && rDestroyed){
-            SpawnRandomBubbles(0, 1);
-            rDestroyed = false;
-        }
-        else if(timer > time && !isTimerEnd){
-            DestroyAllBubbles();
-            EditPositions(superBubblesPositions);
-            CreateSuperBubbles();
-            isTimerEnd = true;
-        }
+            }
+            else if(timer <= time && rDestroyed){
+                SpawnRandomBubbles(0, 1);
+                rDestroyed = false;
+            }
+            else if(timer > time && !isTimerEnd){
+                DestroyAllBubbles();
+                EditPositions(superBubblesPositions);
+                CreateSuperBubbles();
+                isTimerEnd = true;
+            }
 
-        if(superBubblesCount == 0 && isTimerEnd){
-            resultsMenu.SetActive(true);
-        }
+            if(superBubblesCount == 0 && isTimerEnd){
+                resultsMenu.SetActive(true);
+            }
 
-        timer += Time.deltaTime;
+            timer += Time.deltaTime;
+        }
     }
 
     void SpawnRandomBubbles(int yBubblesNum, int rBubblesNum){
