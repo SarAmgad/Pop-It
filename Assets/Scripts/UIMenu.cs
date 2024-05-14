@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UIMenu : MonoBehaviour
 {
+    public GameObject menu;
     public void Menu(){
         SceneManager.LoadScene(0);
     }
@@ -15,5 +16,10 @@ public class UIMenu : MonoBehaviour
 
     public void StartGame(){
         SceneManager.LoadScene(2);
+    }
+
+    public void CloseMenu(){
+        menu.SetActive(false);
+        BubblesSpawn.pauseGame = false;
     }
 }

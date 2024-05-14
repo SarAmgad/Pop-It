@@ -31,7 +31,7 @@ public class TriggerInputDetector : MonoBehaviour
 
         _inputData = GetComponent<InputData>();
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (_inputData._leftController.TryGetFeatureValue(CommonUsages.trigger, out float lTriggerValue) && lTriggerValue > 0.1f)
@@ -60,14 +60,6 @@ public class TriggerInputDetector : MonoBehaviour
             rTriggerClicked = false;
         }
 
-        // if (_inputData._leftController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 lControllerPosition)){
-        //     lControllerPos = lControllerPosition;
-        // }
-
-        // if (_inputData._rightController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 rControllerPosition)){
-        //     rControllerPos = rControllerPosition;
-        // }
-
         if (_inputData._leftController.TryGetFeatureValue(CommonUsages.grip, out float lGripValue) && lGripValue > 0.1f)
         {
             lGripClicked = true;
@@ -84,8 +76,6 @@ public class TriggerInputDetector : MonoBehaviour
     }
 
     public void SuperBubbleInstaniate(Transform pos){
-        // Transform obj1;
-        // Transform obj2;
         pos.InverseTransformPoint(head.transform.position);
 
         SuperBubbles.positions.Add(pos.position);
