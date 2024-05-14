@@ -38,7 +38,7 @@ public class TriggerInputDetector : MonoBehaviour
         {
             if (!lTriggerClicked && !SuperBubbles.isMenuOpen){
                 lTriggerClicked = true;
-                SuperBubbleInstaniate(lController.transform);
+                SuperBubbleInstaniate(lController.transform.position);
             }
         }
         else
@@ -52,21 +52,13 @@ public class TriggerInputDetector : MonoBehaviour
         {
             if (!rTriggerClicked && !SuperBubbles.isMenuOpen){
                 rTriggerClicked = true;
-                SuperBubbleInstaniate(rController.transform);
+                SuperBubbleInstaniate(rController.transform.position);
             }
         }
         else
         {
             rTriggerClicked = false;
         }
-
-        // if (_inputData._leftController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 lControllerPosition)){
-        //     lControllerPos = lControllerPosition;
-        // }
-
-        // if (_inputData._rightController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 rControllerPosition)){
-        //     rControllerPos = rControllerPosition;
-        // }
 
         if (_inputData._leftController.TryGetFeatureValue(CommonUsages.grip, out float lGripValue) && lGripValue > 0.1f)
         {
@@ -83,12 +75,17 @@ public class TriggerInputDetector : MonoBehaviour
         }
     }
 
-    public void SuperBubbleInstaniate(Transform pos){
+    public void SuperBubbleInstaniate(Vector3 pos){
         // Transform obj1;
         // Transform obj2;
-        pos.InverseTransformPoint(head.transform.position);
+        // pos.InverseTransformPoint(head.transform.position);
 
-        SuperBubbles.positions.Add(pos.position);
-        Instantiate(superBubble, pos.position, superBubble.transform.rotation);
+        Instantiate(superBubble, pos, superBubble.transform.rotation);
+        
+        Debug.Log("Position" + pos);
+        pos -= head.transform.position;
+        Debug.Log("Head"+head.transform.position + "Relative Position" + pos);
+        SuperBubbles.positions.Add(pos);
+        
     }
 }

@@ -28,30 +28,11 @@ public class SuperBubbles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isMenuOpen){
-            if (TriggerInputDetector.rTriggerClicked)
-            {
-                // Debug.Log(TriggerInputDetector.rControllerPos);
-                // positions.Add(TriggerInputDetector.rControllerPos);
-                // Instantiate(superBubble, TriggerInputDetector.rControllerPos, superBubble.transform.rotation);
-            }
-            else if (TriggerInputDetector.lTriggerClicked)
-            {
-                // positions.Add(TriggerInputDetector.lControllerPos);
-                // Instantiate(superBubble, TriggerInputDetector.lControllerPos, superBubble.transform.rotation);
-            }
-        }
-
         if(TriggerInputDetector.rGripClicked || TriggerInputDetector.lGripClicked){
             // Debug.Log("2nd condition");
             menu.SetActive(true);
             isMenuOpen = true;
         }
-    }
-
-    public static void SuperBubbleInstaniate(Vector3 pos){
-        positions.Add(pos);
-        Instantiate(superBubble, pos, superBubble.transform.rotation);
     }
 
     [Serializable]
@@ -61,7 +42,6 @@ public class SuperBubbles : MonoBehaviour
     }
 
     public void SaveParameters(){
-        Debug.Log("Save Parameters Superrrr");
         SaveData data = new SaveData
         {
             Positions = positions
@@ -74,7 +54,6 @@ public class SuperBubbles : MonoBehaviour
 
     public static List<Vector3> LoadParameters()
     {
-        Debug.Log("Load Parameters Superrrr");
         string path = Application.persistentDataPath + "/positions.json";
         if (File.Exists(path))
         {

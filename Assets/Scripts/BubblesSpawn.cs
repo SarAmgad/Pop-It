@@ -42,6 +42,7 @@ public class BubblesSpawn : MonoBehaviour
         yCenter = offset.transform.position.y;
         xCenter = offset.transform.position.x;
         zCenter = offset.transform.position.z;
+        Debug.Log("Center" +xCenter + "," + yCenter + "," + zCenter);
 
         SpawnRandomBubbles(5 - badRatio, badRatio);
     }
@@ -59,6 +60,7 @@ public class BubblesSpawn : MonoBehaviour
         }
         else if(timer > time && !isTimerEnd){
             DestroyAllBubbles();
+            EditPositions(superBubblesPositions);
             CreateSuperBubbles();
             isTimerEnd = true;
         }
@@ -96,7 +98,7 @@ public class BubblesSpawn : MonoBehaviour
 
     void EditPositions(List<Vector3> positions){
         for(int i = 0; i < positions.Count; i++){
-            positions[i] = new Vector3(positions[i].x + xCenter, positions[i].y + yCenter, zCenter + 1);
+            superBubblesPositions[i] = new Vector3(positions[i].x + offset.transform.position.x, positions[i].y + offset.transform.position.y, positions[i].y + offset.transform.position.z );
             Debug.Log("======" + positions[i]);
         }
     }
