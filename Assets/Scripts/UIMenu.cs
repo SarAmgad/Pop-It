@@ -11,6 +11,7 @@ public class UIMenu : MonoBehaviour
     }
 
     public void TherapistScene(){
+        SuperBubbles.isMenuOpen = false;
         SceneManager.LoadScene(1);
     }
 

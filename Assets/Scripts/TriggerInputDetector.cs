@@ -36,7 +36,7 @@ public class TriggerInputDetector : MonoBehaviour
     {
         if (_inputData._leftController.TryGetFeatureValue(CommonUsages.trigger, out float lTriggerValue) && lTriggerValue > 0.1f)
         {
-            if (!lTriggerClicked && !SuperBubbles.isMenuOpen){
+            if (!lTriggerClicked && !SuperBubbles.isMenuOpen && SuperBubbles.therapistScene){
                 lTriggerClicked = true;
                 SuperBubbleInstaniate(lController.transform.position);
             }
@@ -50,7 +50,7 @@ public class TriggerInputDetector : MonoBehaviour
         
         if (_inputData._rightController.TryGetFeatureValue(CommonUsages.trigger, out float rTriggerValue) && rTriggerValue > 0.1f)
         {
-            if (!rTriggerClicked && !SuperBubbles.isMenuOpen){
+            if (!rTriggerClicked && !SuperBubbles.isMenuOpen && SuperBubbles.therapistScene){
                 rTriggerClicked = true;
                 SuperBubbleInstaniate(rController.transform.position);
             }

@@ -22,6 +22,7 @@ public class SuperBubbles : MonoBehaviour
     void Start()
     {
         therapistScene = true;
+        // isMenuOpen = false;
         _inputData = GetComponent<InputData>();
     }
 

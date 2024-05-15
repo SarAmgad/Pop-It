@@ -25,12 +25,8 @@ public class ShowKeyboard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        // head.transform.rotation = new Quaternion (0, 0, 0);
         head.transform.rotation = Quaternion.identity;
-
         inputField = GetComponent<TMP_InputField>();
-        // Debug.Log(SuperBubbles.therapistScene);
         if(SuperBubbles.therapistScene){
             SuperBubbles.therapistScene = false;
             LoadParameters(1);

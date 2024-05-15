@@ -37,9 +37,10 @@ public class BubblesSpawn : MonoBehaviour
             xCenter = offset.transform.position.x;
             zCenter = offset.transform.position.z;
 
+            Debug.Log("Center: " + xCenter + "," + yCenter + "," + zCenter);
+
             EditPositions(superBubblesPositions);
             superBubblesCount = superBubblesPositions.Count;
-            Debug.Log("Center" +xCenter + "," + yCenter + "," + zCenter);
 
             SpawnRandomBubbles(5 - badRatio, badRatio);
         }
@@ -58,18 +59,19 @@ public class BubblesSpawn : MonoBehaviour
             }
             else if(timer > time && !isTimerEnd){
                 DestroyAllBubbles();
-                EditPositions(superBubblesPositions);
                 CreateSuperBubbles();
                 isTimerEnd = true;
             }
 
-            if(superBubblesCount == 0 && isTimerEnd){
-                resultsMenu.SetActive(true);
-            }
+            
 
             timer += Time.deltaTime;
         }
+        if(superBubblesCount == 0 && isTimerEnd){
+            resultsMenu.SetActive(true);
+        }
     }
+
 
     void SpawnRandomBubbles(int yBubblesNum, int rBubblesNum){
         if(yBubblesNum > 0)
@@ -81,7 +83,7 @@ public class BubblesSpawn : MonoBehaviour
     void CreateBubble(int bubblesNum, int index){
         for(int i = 0; i < bubblesNum; i++){
             Vector3 spawnPos = new Vector3(Random.Range(xCenter - radius, xCenter + radius), 
-                                            Random.Range(yCenter - radius < 0 ? 0 : yCenter - radius, yCenter + radius), zCenter + 1);
+                                            Random.Range(yCenter - radius < 0 ? 0 : yCenter - radius/3, yCenter + radius/3), zCenter + 0.8f);
             if(usedPositions.Contains(spawnPos))
                 continue;
             Instantiate(spheres[index], spawnPos, spheres[index].transform.rotation);
@@ -97,8 +99,7 @@ public class BubblesSpawn : MonoBehaviour
 
     void EditPositions(List<Vector3> positions){
         for(int i = 0; i < positions.Count; i++){
-            superBubblesPositions[i] = new Vector3(positions[i].x + offset.transform.position.x, positions[i].y + offset.transform.position.y, positions[i].y + offset.transform.position.z );
-            Debug.Log("======" + positions[i]);
+            superBubblesPositions[i] = new Vector3(positions[i].x + xCenter, positions[i].y + yCenter, zCenter + 0.8f);
         }
     }
 
