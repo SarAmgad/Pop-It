@@ -83,7 +83,7 @@ public class BubblesSpawn : MonoBehaviour
     void CreateBubble(int bubblesNum, int index){
         for(int i = 0; i < bubblesNum; i++){
             Vector3 spawnPos = new Vector3(Random.Range(xCenter - radius, xCenter + radius), 
-                                            Random.Range(yCenter - radius < 0 ? 0 : yCenter - radius/3, yCenter + radius/3), zCenter + 0.8f);
+                                            Random.Range(yCenter - radius < 0 ? 0 : yCenter - radius, yCenter + radius), zCenter + 0.6f);
             if(usedPositions.Contains(spawnPos))
                 continue;
             Instantiate(spheres[index], spawnPos, spheres[index].transform.rotation);
@@ -99,7 +99,7 @@ public class BubblesSpawn : MonoBehaviour
 
     void EditPositions(List<Vector3> positions){
         for(int i = 0; i < positions.Count; i++){
-            superBubblesPositions[i] = new Vector3(positions[i].x + xCenter, positions[i].y + yCenter, zCenter + 0.8f);
+            superBubblesPositions[i] = new Vector3(positions[i].x + xCenter, positions[i].y + yCenter, zCenter + 0.6f);
         }
     }
 

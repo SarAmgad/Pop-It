@@ -14482,6 +14482,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8350149582652678565, guid: e885f9ff156714d4da7adaf7a52ae3e7, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 3807601600464494313, guid: e885f9ff156714d4da7adaf7a52ae3e7, type: 3}
       propertyPath: m_Name
       value: Blue-Sphere
